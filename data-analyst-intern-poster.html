@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据分析实习生招聘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 网格背景 */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(30, 144, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 144, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        /* 发光粒子 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(30, 144, 255, 0.8);
+            border-radius: 50%;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0) scale(0.5); opacity: 0; }
+            50% { transform: translateY(-50px) scale(1); opacity: 1; }
+        }
+        
+        /* 主容器 */
+        .poster {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(30, 144, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 0 30px rgba(30, 144, 255, 0.2),
+                        0 0 60px rgba(147, 51, 234, 0.1);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .poster:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 35px rgba(30, 144, 255, 0.3),
+                        0 0 70px rgba(147, 51, 234, 0.2);
+        }
+        
+        /* 标题 */
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #3498db, #9333ea, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(30, 144, 255, 0.5); }
+            100% { text-shadow: 0 0 30px rgba(147, 51, 234, 0.7); }
+        }
+        
+        /* 岗位名称 */
+        .position {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+            border-bottom: 2px solid rgba(30, 144, 255, 0.5);
+            padding-bottom: 15px;
+        }
+        
+        /* 部分标题 */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 25px 0 15px;
+            color: #3498db;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #3498db;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px #3498db;
+        }
+        
+        /* 列表 */
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #e0e0e0;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.8rem;
+        }
+        
+        /* 底部 */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .position {
+                font-size: 1.5rem;
+            }
+            
+            .poster {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 网格背景 -->
+    <div class="grid-bg"></div>
+    
+    <!-- 发光粒子 -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- 海报主体 -->
+    <div class="poster">
+        <h1 class="title">数据驱动未来</h1>
+        <h2 class="position">数据分析实习生</h2>
+        
+        <div class="section">
+            <h3 class="section-title">岗位职责</h3>
+            <ul>
+                <li>协助数据分析师收集、整理和分析业务数据，提供数据支持</li>
+                <li>参与数据可视化工作，制作数据报表和分析报告</li>
+                <li>协助优化数据处理流程，提高数据处理效率</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">任职要求</h3>
+            <ul>
+                <li>本科及以上学历，统计学、数学、计算机等相关专业优先</li>
+                <li>具备基本的数据分析能力，熟悉Excel等办公软件</li>
+                <li>学习能力强，对数据分析有浓厚兴趣，有责任心</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>加入我们，用数据创造价值，开启你的数据分析之旅！</p>
+        </div>
+    </div>
+    
+    <script>
+        // 创建发光粒子
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 页面加载完成后创建粒子
+        window.addEventListener('DOMContentLoaded', createParticles);
+    </script>
+</body>
+</html>
