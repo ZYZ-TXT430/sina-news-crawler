@@ -13,6 +13,9 @@ venv/
 .venv/
 env/
 ENV/
+.pytest_cache/
+.coverage
+htmlcov/
 
 # ============ Scrapy 运行产物 ============
 .scrapy/
