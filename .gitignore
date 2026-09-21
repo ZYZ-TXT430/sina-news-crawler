@@ -35,3 +35,7 @@ Desktop.ini
 
 # ============ 日志 ============
 *.log
+
+# ============ 与爬虫项目无关的本地文件（保留在本地，不入库） ============
+data-analyst-intern-poster.html
+smart_data_dashboard.py
