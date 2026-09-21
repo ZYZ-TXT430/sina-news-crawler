@@ -1,0 +1,11 @@
+# Scrapy 框架
+scrapy>=2.11
+
+# 数据适配
+itemadapter>=0.8.0
+
+# XML/HTML 解析（Scrapy 依赖，显式声明）
+lxml>=4.9.0
+
+# 测试
+pytest>=7.0

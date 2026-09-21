@@ -1,0 +1,1 @@
+# This package contains all the spiders of your Scrapy project
