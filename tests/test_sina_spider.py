@@ -73,10 +73,11 @@ class TestSinaSpider:
         spider = SinaSpider()
         items, _ = collect_items(spider, HTML_SAMPLE)
 
-        # 头条1 + 列表2 + 滚动2 + 频道1 + 重复1(去重后应只剩5条唯一URL)
+        # 7 个不同 URL（headline/1、c/2、c/3、r/4、r/5、s/6、dup/7），
+        # 其中 dup/7 出现两次，去重后唯一 URL 仍为 7 条，总条目数也为 7
         urls = {item['url'] for item in items}
-        assert len(urls) == 6, f"应有6条唯一URL，实际 {len(urls)}: {urls}"
-        assert len(items) == 6, f"去重后应剩6条，实际 {len(items)}"
+        assert len(urls) == 7, f"应有7条唯一URL，实际 {len(urls)}: {urls}"
+        assert len(items) == 7, f"去重后应剩7条，实际 {len(items)}"
 
         assert all(isinstance(item, SinaNewsItem) for item in items)
 
